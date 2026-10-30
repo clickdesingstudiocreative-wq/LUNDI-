@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f6dfe6">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>LUNDI · Administración</title>
+<style>
+:root{--bg:#f1e6ee;--rosa:#f6dfe6;--papel:#fff;--tinta:#16121c;--mut:#8b8494;--vio:#4a2d85;--acento:#6a35c8;--linea:#eee8f0;--borde:#ccc9d0;--ok:#3b8f5e;--mal:#d33}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 20% 10%,#f9dce9,transparent 50%),radial-gradient(circle at 85% 90%,#d9cff3,transparent 50%),var(--bg);background-attachment:fixed;font:400 16px/1.45 'Jost',system-ui,sans-serif;color:var(--tinta)}
+h1,h2{margin:0}
+h2{font:600 22px 'Jost',sans-serif}
+main{max-width:880px;margin:0 auto;padding:20px 16px 60px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+header h1{font:500 38px 'Cormorant Garamond',Georgia,serif;letter-spacing:3px;color:var(--vio)}
+.caja{background:var(--papel);border-radius:24px;padding:20px;margin-bottom:18px;box-shadow:0 20px 60px #8a5a8a1f}
+label{display:block;font-size:15px;margin:12px 0 4px}
+input,textarea,select{width:100%;padding:11px 14px;border:1px solid var(--borde);border-radius:12px;font:500 16px 'Jost',sans-serif;background:#fff;color:var(--tinta);transition:border-color .25s,box-shadow .25s}
+textarea{min-height:84px;resize:vertical}
+.fila{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+button{font:500 15px 'Jost',sans-serif;cursor:pointer;border-radius:40px;border:1px solid #0d0d0d;padding:10px 22px;background:#0d0d0d;color:#fff;transition:transform .2s}
+button:active{transform:scale(.95)}
+button.sec{background:transparent;color:var(--vio);border-color:var(--borde)}
+button.peligro{background:transparent;color:var(--mal);border-color:var(--mal)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:0;border-color:var(--acento);box-shadow:0 0 0 4px #6a35c822}
+button:disabled{opacity:.6;cursor:wait}
+.acciones{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+#aviso{position:sticky;top:8px;z-index:5;padding:11px 16px;border-radius:14px;margin-bottom:12px;background:#fff;border:1px solid var(--linea);box-shadow:0 8px 24px #5a3a7a22}
+#aviso.ok{border-color:var(--ok);color:var(--ok)}
+#aviso.mal{border-color:var(--mal);color:var(--mal)}
+.prod{display:grid;grid-template-columns:72px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--linea)}
+.prod:first-child{border-top:0}
+.prod img,.sinimg{width:72px;height:72px;object-fit:cover;border-radius:16px;background:var(--rosa)}
+.prod h3{margin:0;font:500 17px 'Jost',sans-serif}
+.meta{font-size:14px;color:var(--mut)}
+.stock{display:flex;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}
+.stock button{padding:5px 14px}
+.stock b{min-width:28px;text-align:center}
+#previa{max-width:120px;border-radius:16px;margin-top:8px;display:block}
+[hidden]{display:none!important}
+@media(max-width:520px){.fila{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+<header><h1>LUNDI</h1><button id="salir" class="sec" hidden>Cerrar sesión</button></header>
+<div id="aviso" hidden role="status"></div>
+
+<section id="login" class="caja" hidden>
+  <h2>Iniciar sesión</h2>
+  <label for="email">Correo</label>
+  <input id="email" type="email" autocomplete="username">
+  <label for="clave">Contraseña</label>
+  <input id="clave" type="password" autocomplete="current-password">
+  <div class="acciones"><button id="entrar">Entrar</button></div>
+</section>
+
+<div id="panel" hidden>
+  <section class="caja">
+    <h2 id="titForm">Nuevo producto</h2>
+    <label for="nombre">Nombre</label>
+    <input id="nombre">
+    <label for="descripcion">Descripción</label>
+    <textarea id="descripcion"></textarea>
+    <div class="fila">
+      <div><label for="precio">Precio</label><input id="precio" type="number" min="0" step="0.01" inputmode="decimal"></div>
+      <div><label for="stock">Stock</label><input id="stock" type="number" min="0" step="1" inputmode="numeric" value="0"></div>
+    </div>
+    <label for="categoria">Categoría</label>
+    <input id="categoria" list="cats">
+    <datalist id="cats"></datalist>
+    <label for="archivo">Imagen</label>
+    <input id="archivo" type="file" accept="image/*">
+    <img id="previa" alt="Vista previa" hidden>
+    <div class="acciones">
+      <button id="guardar">Guardar producto</button>
+      <button id="cancelar" class="sec" hidden>Cancelar edición</button>
+    </div>
+  </section>
+
+  <section class="caja">
+    <h2>Productos</h2>
+    <div id="lista"></div>
+  </section>
+</div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const SUPABASE_URL = "https://googhyvwiivzydtvegnq.supabase.co";
+const SUPABASE_KEY = "sb_publishable_sWrQST-uqEr85V3ezrGEhw_Fsr7x2lb"; // clave pública
+const BUCKET = "productos";
+
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const $ = id => document.getElementById(id);
+let editId = null, imagenActual = null, productos = [];
+
+function aviso(texto, tipo) {
+  const a = $("aviso");
+  a.textContent = texto; a.className = tipo || ""; a.hidden = false;
+  clearTimeout(aviso.t); aviso.t = setTimeout(() => a.hidden = true, 5000);
+}
+
+function mostrar(sesion) {
+  $("login").hidden = !!sesion;
+  $("panel").hidden = !sesion;
+  $("salir").hidden = !sesion;
+  if (sesion) cargar();
+}
+
+async function iniciar() {
+  const { data } = await sb.auth.getSession();
+  mostrar(data.session);
+  sb.auth.onAuthStateChange((_e, s) => mostrar(s));
+}
+
+$("entrar").onclick = async () => {
+  const { error } = await sb.auth.signInWithPassword({ email: $("email").value.trim(), password: $("clave").value });
+  if (error) aviso("No se pudo entrar: " + error.message, "mal");
+};
+$("clave").addEventListener("keydown", e => { if (e.key === "Enter") $("entrar").click(); });
+$("salir").onclick = () => sb.auth.signOut();
+
+async function cargar() {
+  const { data, error } = await sb.from("productos").select("*").order("id", { ascending: false });
+  if (error) return aviso("No se pudieron cargar los productos: " + error.message, "mal");
+  productos = data;
+  $("cats").replaceChildren(...[...new Set(data.map(p => p.categoria).filter(Boolean))].map(c => { const o = document.createElement("option"); o.value = c; return o; }));
+  pintar();
+}
+
+function el(tag, props, ...hijos) {
+  const e = Object.assign(document.createElement(tag), props || {});
+  e.append(...hijos); return e;
+}
+
+function pintar() {
+  const lista = $("lista");
+  if (!productos.length) return lista.replaceChildren(el("p", { textContent: "Aún no hay productos. Agrega el primero arriba." }));
+  lista.replaceChildren(...productos.map(p => {
+    const foto = p.imagen ? el("img", { src: p.imagen, alt: p.nombre || "", loading: "lazy" }) : el("div", { className: "sinimg" });
+    const cant = el("b", { textContent: p.stock ?? 0 });
+    const menos = el("button", { className: "sec", textContent: "−", ariaLabel: "Restar uno" });
+    const mas = el("button", { className: "sec", textContent: "+", ariaLabel: "Sumar uno" });
+    menos.onclick = () => cambiarStock(p, -1);
+    mas.onclick = () => cambiarStock(p, 1);
+    const ed = el("button", { className: "sec", textContent: "Editar" });
+    ed.onclick = () => editar(p);
+    const el_ = el("button", { className: "peligro", textContent: "Eliminar" });
+    el_.onclick = () => eliminar(p);
+    return el("div", { className: "prod" }, foto, el("div", {},
+      el("h3", { textContent: p.nombre || "(sin nombre)" }),
+      el("div", { className: "meta", textContent: `$${p.precio ?? 0} · ${p.categoria || "sin categoría"}` }),
+      el("div", { className: "stock" }, "Stock:", menos, cant, mas, ed, el_)));
+  }));
+}
+
+async function cambiarStock(p, d) {
+  const nuevo = Math.max(0, (p.stock ?? 0) + d);
+  const { error } = await sb.from("productos").update({ stock: nuevo }).eq("id", p.id);
+  if (error) return aviso("No se pudo actualizar el stock: " + error.message, "mal");
+  p.stock = nuevo; pintar();
+}
+
+function editar(p) {
+  editId = p.id; imagenActual = p.imagen || null;
+  $("titForm").textContent = "Editar producto";
+  $("nombre").value = p.nombre || ""; $("descripcion").value = p.descripcion || "";
+  $("precio").value = p.precio ?? ""; $("stock").value = p.stock ?? 0; $("categoria").value = p.categoria || "";
+  $("archivo").value = "";
+  $("previa").hidden = !imagenActual; if (imagenActual) $("previa").src = imagenActual;
+  $("cancelar").hidden = false;
+  $("titForm").scrollIntoView({ behavior: "smooth" });
+}
+
+function limpiar() {
+  editId = null; imagenActual = null;
+  $("titForm").textContent = "Nuevo producto";
+  ["nombre", "descripcion", "precio", "categoria", "archivo"].forEach(i => $(i).value = "");
+  $("stock").value = 0; $("previa").hidden = true; $("cancelar").hidden = true;
+}
+$("cancelar").onclick = limpiar;
+
+$("archivo").onchange = () => {
+  const f = $("archivo").files[0];
+  if (f) { $("previa").src = URL.createObjectURL(f); $("previa").hidden = false; }
+};
+
+function rutaDeUrl(url) {
+  const marca = `/${BUCKET}/`;
+  const i = url ? url.indexOf(marca) : -1;
+  return i < 0 ? null : decodeURIComponent(url.slice(i + marca.length));
+}
+
+$("guardar").onclick = async () => {
+  const nombre = $("nombre").value.trim();
+  if (!nombre) return aviso("Escribe el nombre del producto.", "mal");
+  const btn = $("guardar"); btn.disabled = true;
+  try {
+    let imagen = imagenActual;
+    const f = $("archivo").files[0];
+    if (f) {
+      const limpio = f.name.normalize("NFD").replace(/[^\w.\-]+/g, "_");
+      const ruta = `${Date.now()}-${limpio}`;
+      const { error: eu } = await sb.storage.from(BUCKET).upload(ruta, f, { contentType: f.type, cacheControl: "3600" });
+      if (eu) throw eu;
+      imagen = sb.storage.from(BUCKET).getPublicUrl(ruta).data.publicUrl;
+    }
+    const datos = {
+      nombre, descripcion: $("descripcion").value.trim(),
+      precio: parseFloat($("precio").value) || 0,
+      stock: parseInt($("stock").value, 10) || 0,
+      categoria: $("categoria").value.trim(), imagen
+    };
+    const q = editId ? sb.from("productos").update(datos).eq("id", editId) : sb.from("productos").insert(datos);
+    const { error } = await q;
+    if (error) throw error;
+    if (f && editId && imagenActual && imagenActual !== imagen) {
+      const vieja = rutaDeUrl(imagenActual); if (vieja) await sb.storage.from(BUCKET).remove([vieja]);
+    }
+    aviso(editId ? "Producto actualizado." : "Producto creado.", "ok");
+    limpiar(); cargar();
+  } catch (e) { aviso("No se pudo guardar: " + e.message, "mal"); }
+  btn.disabled = false;
+};
+
+async function eliminar(p) {
+  if (!confirm(`¿Eliminar "${p.nombre}"? Esta acción no se puede deshacer.`)) return;
+  const { error } = await sb.from("productos").delete().eq("id", p.id);
+  if (error) return aviso("No se pudo eliminar: " + error.message, "mal");
+  const ruta = rutaDeUrl(p.imagen); if (ruta) await sb.storage.from(BUCKET).remove([ruta]);
+  aviso("Producto eliminado.", "ok");
+  if (editId === p.id) limpiar();
+  cargar();
+}
+
+iniciar();
+</script>
+</body>
+</html>
