@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.supabase.co https://cdn.shopify.com; connect-src 'self' https://*.supabase.co https://*.myshopify.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="description" content="LUNDI: ropa y calzado con color. Elige tu talla y tu color y paga en nuestro checkout seguro.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%91%97%3C/text%3E%3C/svg%3E">
+<title>LUNDI · Tienda</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff6fa;--card:#fff;--ink:#2b1237;--mut:#7a6485;--pink:#ff3d8b;--vio:#7c4dff;--sun:#ffb21e;--mint:#14c9a0;--line:#f0d9e6;--sh:0 16px 40px -20px rgba(124,77,255,.5);--d:'Bricolage Grotesque',Georgia,serif;--b:'DM Sans',system-ui,sans-serif}
+[data-theme=dark]{--bg:#150c24;--card:#221438;--ink:#fdeeff;--mut:#b9a3c9;--line:#3a2656;--sh:0 16px 40px -20px #000}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font:400 16px/1.5 var(--b);background:var(--bg);color:var(--ink);transition:background .5s,color .5s;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+:focus-visible{outline:3px solid var(--vio);outline-offset:2px}
+header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.brand{font:800 28px var(--d);letter-spacing:-.02em;background:linear-gradient(90deg,var(--pink),var(--vio),var(--sun));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:shift 6s linear infinite}
+@keyframes shift{to{background-position:200% 0}}
+.tools{display:flex;gap:10px}
+.ib{position:relative;width:44px;height:44px;border-radius:50%;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;font-size:20px;transition:transform .3s}
+.ib:active{transform:scale(.9)}
+#theme span{display:block;transition:transform .6s cubic-bezier(.3,1.6,.5,1)}
+[data-theme=dark] #theme span{transform:rotate(360deg)}
+#cnt{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;border-radius:10px;background:var(--pink);color:#fff;font:700 12px/20px var(--b);text-align:center;padding:0 5px}
+.bump{animation:bump .4s}
+@keyframes bump{40%{transform:scale(1.3) rotate(-8deg)}}
+.hero{position:relative;padding:22px 14px 8px;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(50px);opacity:.55;animation:fl 14s ease-in-out infinite alternate;pointer-events:none}
+.b1{width:260px;height:260px;background:var(--pink);top:-60px;left:-70px}
+.b2{width:300px;height:300px;background:var(--vio);top:40px;right:-110px;animation-delay:-5s}
+.b3{width:220px;height:220px;background:var(--sun);bottom:-60px;left:30%;animation-delay:-9s}
+@keyframes fl{to{transform:translate(40px,30px) scale(1.2)}}
+.slider{position:relative;max-width:980px;margin:0 auto;border-radius:32px;overflow:hidden;box-shadow:var(--sh)}
+#trk{display:flex;transition:transform .6s cubic-bezier(.2,.8,.2,1);touch-action:pan-y;cursor:grab;user-select:none}
+.slide{flex:0 0 100%;min-height:340px;padding:40px 54px 64px;color:#fff;display:flex;flex-direction:column;justify-content:center;gap:12px;position:relative;overflow:hidden}
+.s1{background:linear-gradient(135deg,#ff3d8b,#ff8a3d)}
+.s2{background:linear-gradient(135deg,#7c4dff,#3dc6ff)}
+.s3{background:linear-gradient(135deg,#14c9a0,#7c4dff)}
+.slide h2{font:800 clamp(34px,8vw,64px)/1 var(--d);letter-spacing:-.03em;max-width:13ch}
+.slide p{max-width:34ch;font-size:18px}
+.slide .t{opacity:0;transform:translateY(24px);transition:.7s .25s}
+.slide.on .t{opacity:1;transform:none}
+.slide .t2{transition-delay:.45s}
+.ring{position:absolute;right:-60px;bottom:-60px;width:260px;height:260px;border-radius:50%;border:36px solid rgba(255,255,255,.25);animation:spin 18s linear infinite}
+.ring::after{content:"";position:absolute;top:-24px;left:50%;width:36px;height:36px;border-radius:50%;background:#fff}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cta{text-decoration:none;align-self:flex-start;background:#fff;color:#2b1237;font-weight:700;padding:12px 22px;border-radius:99px;transition:transform .25s}
+.cta:hover{transform:translateY(-3px) rotate(-2deg)}
+.arr{position:absolute;top:50%;translate:0 -50%;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.85);color:#2b1237;font-size:20px;z-index:3}
+.prev{left:10px}.next{right:10px}
+.dots{position:absolute;bottom:18px;left:0;right:0;display:flex;justify-content:center;gap:8px;z-index:3}
+.dots i{width:10px;height:10px;border-radius:5px;background:rgba(255,255,255,.5);transition:.4s;cursor:pointer}
+.dots i.on{width:34px;background:#fff}
+main{max-width:1100px;margin:0 auto;padding:30px 16px 60px}
+h1.sec{font:800 clamp(28px,6vw,44px) var(--d);letter-spacing:-.02em}
+.sub{color:var(--mut);margin-bottom:16px}
+#chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 18px;scrollbar-width:none}
+.chip{flex:none;padding:9px 18px;border-radius:99px;background:var(--card);border:1px solid var(--line);font-weight:500;transition:.3s}
+.chip.on{background:linear-gradient(90deg,var(--pink),var(--vio));color:#fff;border-color:transparent;transform:scale(1.06)}
+#grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 10px}
+@media(min-width:700px){#grid{grid-template-columns:repeat(4,1fr);gap:26px 14px}}
+.sc{cursor:pointer}
+.ph{position:relative;aspect-ratio:3/4;border-radius:12px;overflow:hidden;display:grid;place-items:center}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.sc:hover .ph img{transform:scale(1.07)}
+.ph .ini{font-size:70px}
+.hrt,.qa{position:absolute;z-index:2;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.92);color:#2b1237;font-size:18px;display:grid;place-items:center;box-shadow:0 4px 12px rgba(0,0,0,.18);transition:transform .25s}
+.hrt{top:8px;right:8px}.hrt.on{color:var(--pink);animation:bump .4s}
+.qa{bottom:8px;right:8px;font-size:24px;font-weight:700}
+.qa:hover{transform:scale(1.12) rotate(90deg)}
+.sw{display:flex;gap:8px;margin-top:8px}
+.sw i{width:20px;height:20px;border-radius:50%;border:2px solid var(--bg);box-shadow:0 0 0 1px var(--line);cursor:pointer;transition:.25s}
+.sw i.on{box-shadow:0 0 0 2px var(--pink)}
+.nm{font-size:14px;margin-top:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sc .pr{margin:2px 0 0}
+.sc .pr b{color:var(--pink);font:800 18px var(--d)}
+.dot{width:36px;height:36px;border-radius:50%;border:3px solid var(--bg);box-shadow:0 0 0 2px var(--line);transition:.3s}
+.dot.on{box-shadow:0 0 0 3px var(--pink);transform:scale(1.1)}
+.card{background:var(--card);border-radius:26px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--sh);transform:perspective(800px) rotateX(var(--rx,0)) rotateY(var(--ry,0));transition:transform .25s}
+.pic{position:relative;aspect-ratio:1;display:grid;place-items:center;font:800 80px var(--d);color:rgba(255,255,255,.9);overflow:hidden}
+.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.card:hover .pic img{transform:scale(1.08)}
+.tag{position:absolute;top:10px;left:10px;z-index:2;padding:4px 10px;border-radius:99px;background:var(--sun);color:#2b1237;font:700 12px var(--b)}
+.tag.g{background:var(--mint)}
+.inf{padding:14px 16px 18px;display:grid;gap:4px}
+.inf small{color:var(--vio);font-weight:700}
+.inf h3{font:700 19px var(--d)}
+.inf p{color:var(--mut);font-size:14px;min-height:42px}
+.pr{display:flex;align-items:baseline;gap:8px;margin:4px 0 8px}
+.pr b{font:800 22px var(--d)}
+.pr s{color:var(--mut);font-size:14px}
+.add{padding:11px;border-radius:14px;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--pink),var(--vio));transition:transform .2s,filter .2s}
+.add:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.add:disabled{background:var(--line);color:var(--mut);cursor:not-allowed}
+.note{background:var(--card);border:1px dashed var(--pink);border-radius:16px;padding:10px 14px;margin-bottom:16px;font-size:14px;color:var(--mut)}
+#drawer,#modal,#detail{position:fixed;inset:0;z-index:40;visibility:hidden;transition:visibility .4s}
+#drawer.open,#modal.open,#detail.open{visibility:visible}
+.ov{position:absolute;inset:0;background:rgba(20,5,35,.55);opacity:0;transition:opacity .4s}
+.open .ov{opacity:1}
+.pan{position:absolute;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--bg);padding:20px;display:flex;flex-direction:column;gap:12px;transform:translateX(100%);transition:transform .5s cubic-bezier(.2,.8,.2,1);overflow-y:auto}
+.open .pan{transform:none}
+.pan h2{font:800 26px var(--d);display:flex;justify-content:space-between;align-items:center}
+.li{display:grid;grid-template-columns:56px 1fr auto;gap:10px;align-items:center;padding:10px;background:var(--card);border-radius:16px;border:1px solid var(--line)}
+.li .th{width:56px;height:56px;border-radius:12px;background-size:cover;background-position:center}
+.q{display:flex;align-items:center;gap:8px}
+.q button{width:28px;height:28px;border-radius:50%;background:var(--line)}
+.tot{display:flex;justify-content:space-between;font:800 22px var(--d);margin-top:auto;padding-top:10px}
+.big{padding:14px;border-radius:16px;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--pink),var(--vio),var(--sun));background-size:200% 100%;animation:shift 5s linear infinite;width:100%}
+.steps{display:flex;gap:6px;list-style:none;padding:0}
+.steps li{flex:1;text-align:center;font-size:13px;color:var(--mut);padding-top:10px;border-top:5px solid var(--line);border-radius:3px;transition:.5s}
+.steps li.on{color:var(--ink);font-weight:700;border-color:var(--pink)}
+.steps li.ok{border-color:var(--mint)}
+input,textarea,select{width:100%;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;margin-bottom:10px}
+label{font-size:14px;font-weight:700}
+.sum{background:var(--card);border-radius:16px;padding:12px 14px;border:1px solid var(--line);font-size:15px}
+.done{text-align:center;padding:30px 0}
+.done .ck{width:90px;height:90px;border-radius:50%;margin:0 auto 12px;background:var(--mint);display:grid;place-items:center;font-size:46px;color:#fff;animation:pop .7s cubic-bezier(.3,1.8,.5,1)}
+@keyframes pop{from{transform:scale(0) rotate(-90deg)}}
+.cf{position:fixed;top:-20px;width:10px;height:14px;z-index:60;pointer-events:none}
+.fly{position:fixed;z-index:70;width:20px;height:20px;border-radius:50%;background:var(--pink);pointer-events:none}
+footer{text-align:center;color:var(--mut);padding:30px 16px 50px;font-size:14px}
+.err{color:#d6204f;font-size:14px;min-height:20px}
+.dp{width:min(520px,100%)}
+.dx{position:absolute;top:12px;right:12px;z-index:5}
+.gal{position:relative;aspect-ratio:4/5;border-radius:24px;overflow:hidden;cursor:zoom-in;display:grid;place-items:center;margin-top:34px;touch-action:pan-y;flex:none}
+.gal img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .35s;transform-origin:50% 50%;pointer-events:none}
+.gal.zoom{cursor:zoom-out;touch-action:none}
+.gal.zoom img{transform:scale(2.4)}
+.ini{font:800 120px var(--d);color:rgba(255,255,255,.9)}
+.zh{position:absolute;bottom:10px;left:50%;translate:-50% 0;background:rgba(20,5,35,.6);color:#fff;font-size:12px;padding:4px 12px;border-radius:99px;z-index:2;pointer-events:none;transition:opacity .3s}
+.gal.zoom .zh{opacity:0}
+.th2{display:flex;gap:8px;overflow-x:auto;flex:none}
+.th2 img{width:64px;height:64px;flex:none;object-fit:cover;border-radius:12px;border:3px solid transparent;cursor:pointer;opacity:.7;transition:.3s}
+.th2 img.on{border-color:var(--pink);opacity:1}
+.opt{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+.dn{font:800 30px/1.1 var(--d)}
+.cat{color:var(--vio);font-weight:700}
+.big:disabled{animation:none;background:var(--line);color:var(--mut);cursor:not-allowed}
+.terms{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;font-size:14px;margin-bottom:12px}
+.terms ul{padding-left:18px;margin:6px 0 8px}
+.terms a,footer a{color:var(--vio);font-weight:700}
+.agree{display:flex;gap:10px;align-items:flex-start;font-weight:400;line-height:1.35}
+input[type=checkbox]{width:22px;height:22px;margin:2px 0 0;flex:none;accent-color:var(--pink)}
+footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin-top:8px}
+.ts{font-size:13px;color:var(--mut);font-weight:400;margin:-2px 0 6px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">LUNDI</div>
+  <div class="tools">
+    <button class="ib" id="theme" aria-label="Cambiar entre día y noche"><span>☀️</span></button>
+    <button class="ib" id="cartBtn" aria-label="Abrir carrito">🛍️<em id="cnt" style="font-style:normal">0</em></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="slider">
+    <div id="trk">
+      <div class="slide s1 on"><div class="ring"></div><h2 class="t">Color para todos los días</h2><p class="t t2">Piezas elegidas con cariño. Mira la tienda y llévate la tuya.</p><a class="cta t t2" href="#tienda">Ver productos</a></div>
+      <div class="slide s2"><div class="ring"></div><h2 class="t">Elige, paga y listo</h2><p class="t t2">Paga con tarjeta o pago local en una página segura.</p><a class="cta t t2" href="#tienda">Empezar mi pedido</a></div>
+      <div class="slide s3"><div class="ring"></div><h2 class="t">Lo nuevo va primero</h2><p class="t t2">Cada producto nuevo aparece arriba apenas lo agregas.</p><a class="cta t t2" href="#tienda">Ver novedades</a></div>
+    </div>
+    <button class="arr prev" aria-label="Anterior">‹</button><button class="arr next" aria-label="Siguiente">›</button>
+    <div class="dots"><i></i><i></i><i></i></div>
+  </div>
+</section>
+
+<main id="tienda">
+  <h1 class="sec">Tienda</h1>
+  <p class="sub">Toca una prenda para elegir su talla y su color.</p>
+  <div id="note"></div>
+  <input id="q" type="search" placeholder="Buscar vestidos, tacones, blusas…" aria-label="Buscar">
+  <div id="chips"></div>
+  <div id="grid"></div>
+</main>
+<footer>LUNDI · Emprendimiento pequeño, hecho con cariño<nav aria-label="Información legal"><a href="condiciones.html#terminos">Términos y condiciones</a><a href="condiciones.html#envios">Envíos</a><a href="condiciones.html#devoluciones">Devoluciones</a><a href="condiciones.html#privacidad">Privacidad</a><a id="fw" href="#" hidden target="_blank" rel="noopener noreferrer">WhatsApp</a></nav></footer>
+
+<div id="drawer"><div class="ov" data-close></div>
+  <aside class="pan"><h2>Tu carrito <button class="ib" data-close aria-label="Cerrar">✕</button></h2>
+    <div id="items"></div>
+    <div class="tot"><span>Total</span><span id="total">0</span></div>
+    <button class="big" id="go">Continuar con el pedido</button>
+  </aside>
+</div>
+
+<div id="modal"><div class="ov" data-close></div>
+  <aside class="pan"><h2>Tu pedido <button class="ib" data-close aria-label="Cerrar">✕</button></h2>
+    <ul class="steps"><li id="p1">Condiciones</li><li id="p2">Pago seguro</li><li id="p3">Listo</li></ul>
+    <div id="body"></div>
+  </aside>
+</div>
+
+<div id="detail"><div class="ov" data-close></div><aside class="pan dp"><div id="dbody"></div></aside></div>
+
+<script>
+/* ====== CONFIGURA AQUÍ ====== */
+const CFG={
+  SB_URL:'https://googhyvwiivzydtvegnq.supabase.co',
+  SB_KEY:'sb_publishable_sWrQST-uqEr85V3ezrGEhw_Fsr7x2lb',   // clave publishable de Supabase (nunca la service_role)
+  SIMULADOR:false,                             // true = prueba con productos y pagos de ejemplo; false = funciones reales
+  SHOP:null,                                  // se llena desde el panel (Ajustes): dominio y token de Shopify
+  SHOP_V:'2026-07',                           // versión del API de Shopify
+  BUCKET:'Productos',
+  WHATSAPP:'',                                // opcional: tu número con código de país, sin +
+  MONEDA:'USD'
+};
+/* ============================ */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const hx=v=>/^#[0-9a-f]{6}$/i.test(v)?v:'#ff3d8b';
+const safeHref=u=>/^(#|https?:\/\/|\/|[\w.-]+\.html)/i.test(u||'')?u:'#tienda';
+const money=n=>new Intl.NumberFormat('es-US',{style:'currency',currency:CFG.MONEDA}).format(n);
+const COL={rojo:'#e53950',rosa:'#ff6fa8',negro:'#222222',blanco:'#f1f1f1',azul:'#3b6cff',verde:'#14b88a',amarillo:'#ffc83d',violeta:'#8a5cff',morado:'#8a5cff',naranja:'#ff8a3d',beige:'#e0c9a6',celeste:'#6cc7ff',gris:'#9a9aa8',dorado:'#d4a737',plateado:'#c0c4cc',marron:'#8a5a3c',cafe:'#8a5a3c'};
+const hexOf=n=>COL[String(n).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')]||'#bbbbbb';
+const SHAPE={
+ vestido:'M116 30h8v34h-8zM176 30h8v34h-8zM122 60h56l8 90 58 210H56l58-210z',
+ blusa:'M92 70l32-14h52l32 14 62 80-34 24-26-30v170H90V144l-26 30-34-24z',
+ falda:'M104 110h92l56 230H48zM98 96h104v22H98z',
+ tacon:'M48 255C48 205 92 150 126 150c34 0 34 42 66 72 28 26 62 26 68 54v10H176c-30-18-76-6-112 8zM52 280h28l-8 72h-10z'};
+function art(kind,hex){
+  const svg=`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 400'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='${hex}' stop-opacity='.3'/><stop offset='1' stop-color='#ffffff' stop-opacity='.92'/></linearGradient></defs><rect width='300' height='400' fill='url(#g)'/><path d='${SHAPE[kind]}' fill='${hex}' stroke='rgba(0,0,0,.2)' stroke-width='3'/></svg>`;
+  return ('data:image/svg+xml;utf8,'+encodeURIComponent(svg)).replace(/'/g,'%27');
+}
+const mk=(id,nombre,kind,precio,ant,categoria,cols,tallas,x={})=>({id,nombre,precio,precio_anterior:ant,categoria,stock:9,tallas,vars:cols.map(c=>({c,hex:hexOf(c),img:art(kind,hexOf(c))})),...x});
+const DEMO=[
+ mk(1,'Vestido Aurora','vestido',42,55,'Vestidos',['Rojo','Rosa','Negro','Azul'],['XS','S','M','L'],{nuevo:true}),
+ mk(2,'Tacones Estrella','tacon',58,75,'Tacones',['Negro','Rojo','Dorado'],['35','36','37','38','39']),
+ mk(3,'Blusa Brisa','blusa',24,32,'Blusas',['Blanco','Rosa','Celeste'],['S','M','L']),
+ mk(4,'Vestido Luna','vestido',46,0,'Vestidos',['Violeta','Verde','Amarillo'],['S','M','L','XL']),
+ mk(5,'Falda Pétalo','falda',30,40,'Faldas',['Naranja','Violeta','Negro'],['XS','S','M']),
+ mk(6,'Tacones Alba','tacon',49,0,'Tacones',['Beige','Rosa'],['36','37','38','39'],{nuevo:true}),
+ mk(7,'Blusa Coral','blusa',26,0,'Blusas',['Naranja','Blanco'],['S','M','L','XL']),
+ mk(8,'Vestido Sol','vestido',39,52,'Vestidos',['Amarillo','Blanco'],['S','M','L'])
+];
+const parseCols=v=>opts(v).map(x=>{const i=x.lastIndexOf(':'),n=i<0?x:x.slice(0,i).trim(),h=i<0?'':x.slice(i+1).trim();return{c:n,hex:/^#[0-9a-f]{6}$/i.test(h)?h:hexOf(n)}});
+const clean=p=>({...p,id:esc(p.id),nombre:esc(p.nombre),categoria:esc(p.categoria||''),tallas:p.tallas.map(esc),vars:p.vars.map(v=>({...v,c:esc(v.c),img:esc(v.img)}))});
+function norm(p){
+  if(p.vars)return p;
+  const ims=imgs(p),cs=parseCols(p.color);
+  return {...p,tallas:opts(p.talla),vars:cs.length?cs.map((c,i)=>({c:c.c,hex:c.hex,img:ims[cs.length===ims.length?i:0]||''})):[{c:'',hex:'',img:ims[0]||''}]};
+}
+let products=[],cart=[],cat='Todo',buyer={};
+try{cart=JSON.parse(localStorage.getItem('lundi-cart')||'[]')}catch(e){}
+const prod=id=>products.find(p=>String(p.id)===String(id));
+const lp=c=>c.pr!=null?Number(c.pr):Number((prod(c.id)||{}).precio||0);
+const total=()=>cart.reduce((s,c)=>s+(prod(c.id)?lp(c)*c.q:0),0);
+let LIVE=false;
+const save=()=>{try{localStorage.setItem('lundi-cart',JSON.stringify(cart))}catch(e){}};
+const opts=v=>String(v||'').split(',').map(s=>s.trim()).filter(Boolean);
+const imgs=p=>opts(p.imagen).map(u=>/^https?:/.test(u)?u:`${CFG.SB_URL}/storage/v1/object/public/${CFG.BUCKET}/${u}`);
+const img=p=>imgs(p)[0]||'';
+const HUES=[['#ff3d8b','#ff8a3d'],['#7c4dff','#3dc6ff'],['#14c9a0','#7c4dff'],['#ffb21e','#ff3d8b']];
+
+/* Tema día / noche */
+function setTheme(t){document.documentElement.dataset.theme=t;$('#theme span').textContent=t==='dark'?'🌙':'☀️';try{localStorage.setItem('lundi-theme',t)}catch(e){}}
+let t0=null;try{t0=localStorage.getItem('lundi-theme')}catch(e){}
+setTheme(t0||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
+$('#theme').onclick=()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark');
+
+/* Slider deslizable */
+const trk=$('#trk');let slides=$$('.slide'),dots=$$('.dots i'),si=0,x0=null,dx=0,auto;
+function go(k){si=(k+slides.length)%slides.length;trk.style.transform=`translateX(${-si*100}%)`;slides.forEach((s,j)=>s.classList.toggle('on',j===si));dots.forEach((d,j)=>d.classList.toggle('on',j===si))}
+trk.addEventListener('pointerdown',e=>{x0=e.clientX;dx=0;trk.style.transition='none';clearInterval(auto)});
+trk.addEventListener('pointermove',e=>{if(x0==null)return;dx=e.clientX-x0;trk.style.transform=`translateX(calc(${-si*100}% + ${dx}px))`});
+const endDrag=()=>{if(x0==null)return;trk.style.transition='';const m=Math.abs(dx)>50;const k=si+(m?(dx<0?1:-1):0);x0=null;go(k);play()};
+trk.addEventListener('pointerup',endDrag);trk.addEventListener('pointerleave',endDrag);trk.addEventListener('pointercancel',endDrag);
+$('.prev').onclick=()=>go(si-1);$('.next').onclick=()=>go(si+1);
+dots.forEach((d,j)=>d.onclick=()=>go(j));
+function play(){clearInterval(auto);if(!matchMedia('(prefers-reduced-motion:reduce)').matches)auto=setInterval(()=>go(si+1),5500)}
+go(0);play();
+
+/* Productos */
+let q='',catList=null;
+const sb=path=>fetch(CFG.SB_URL+'/rest/v1/'+path,{headers:{apikey:CFG.SB_KEY,Authorization:'Bearer '+CFG.SB_KEY}}).then(r=>r.ok?r.json():null).catch(()=>null);
+function setSlides(list){
+  trk.innerHTML=list.map((x,i)=>{
+    const im=x._img||(x.imagen?imgs(x)[0]:''),f=im?`linear-gradient(135deg,${hx(x.color1)}cc,${hx(x.color2)}99),url('${esc(im)}') center/cover`:`linear-gradient(135deg,${hx(x.color1)},${hx(x.color2)})`;
+    return `<div class="slide${i?'':' on'}" style="background:${f}"><div class="ring"></div><h2 class="t">${esc(x.titulo)}</h2><p class="t t2">${esc(x.texto)}</p>${x.boton?`<a class="cta t t2" href="${esc(safeHref(x.enlace||'#tienda'))}">${esc(x.boton)}</a>`:''}</div>`}).join('');
+  $('.dots').innerHTML=list.map(()=>'<i></i>').join('');
+  slides=$$('.slide');dots=$$('.dots i');dots.forEach((d,j)=>d.onclick=()=>go(j));go(0);
+}
+const simGet=(k,d)=>{try{return JSON.parse(localStorage.getItem(k)||'null')||d}catch(e){return d}};
+function simLoad(){
+  const db=simGet('lundi-sim',null);if(!db)return DEMO;
+  const M=simGet('lundi-sim-img',{}),u=n=>M[n]||'';
+  const po=(db.portadas||[]).filter(x=>x.visible).sort((a,b)=>a.orden-b.orden).map(x=>({...x,_img:u(x.imagen)}));
+  if(po.length)setSlides(po);
+  const ca=(db.categorias||[]).filter(x=>x.visible).sort((a,b)=>a.orden-b.orden);
+  if(ca.length)catList=ca.map(c=>esc(c.nombre));
+  const nm=(db.ajustes||[]).find(a=>a.clave==='nombre');
+  if(nm&&nm.valor){$('.brand').textContent=nm.valor;document.title=nm.valor+' · Tienda'}
+  const kind=c=>/tac/i.test(c)?'tacon':/blus/i.test(c)?'blusa':/falda/i.test(c)?'falda':'vestido';
+  const pr=(db.productos||[]).map(r=>{
+    const cs=parseCols(r.color),ims=String(r.imagen||'').split(',').map(x=>x.trim()).filter(Boolean).map(u),k=kind(r.categoria||'');
+    return {...r,stock:r.stock??0,tallas:opts(r.talla),vars:cs.length?cs.map((c,i)=>({c:c.c,hex:c.hex,img:ims[cs.length===ims.length?i:0]||art(k,c.hex)})):[{c:'',hex:'',img:ims[0]||art(k,'#ff7aa5')}]}});
+  return pr.length?pr:DEMO;
+}
+const GQL='query($n:Int!){products(first:$n,sortKey:CREATED_AT,reverse:true){nodes{id title productType images(first:12){nodes{url}} options{name values} variants(first:100){nodes{id availableForSale price{amount currencyCode} compareAtPrice{amount} image{url} selectedOptions{name value}}}}}}';
+const CART_Q='mutation($input:CartInput!){cartCreate(input:$input){cart{checkoutUrl} userErrors{field message}}}';
+async function shopify(query,variables){
+  const r=await fetch(`https://${CFG.SHOP.d}/api/${CFG.SHOP_V}/graphql.json`,{method:'POST',headers:{'Content-Type':'application/json','X-Shopify-Storefront-Access-Token':CFG.SHOP.t},body:JSON.stringify({query,variables})});
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok||j.errors)throw new Error('shopify');
+  return j.data;
+}
+const dom=v=>{const d=String(v||'').trim().replace(/^https?:\/\//i,'').replace(/\/.*$/,'');return /^[a-z0-9][a-z0-9.-]*\.[a-z]{2,}$/i.test(d)?d:''};
+const colorHex=n=>{const m=String(n).match(/#[0-9a-f]{6}/i);if(m)return m[0];const h=hexOf(n);return h!=='#bbbbbb'?h:hexOf(String(n).split(/[\s(\/,-]/)[0])};
+function shopNorm(n){
+  const op=n.options||[],oT=op.find(o=>/talla|size|tama/i.test(o.name)),oC=op.find(o=>/colou?r/i.test(o.name));
+  const val=(v,o)=>(v.selectedOptions.find(x=>o&&x.name===o.name)||{}).value||'';
+  const vs=n.variants.nodes.map(v=>({id:v.id,t:val(v,oT),c:val(v,oC),price:Number(v.price.amount),cmp:v.compareAtPrice?Number(v.compareAtPrice.amount):0,ok:v.availableForSale,im:v.image?v.image.url:'',cur:v.price.currencyCode}));
+  const ims=n.images.nodes.map(i=>i.url),cs=oC?oC.values:[];
+  const vars=cs.length?cs.map((c,i)=>{const v=vs.find(x=>x.c===c&&x.im);return{c,hex:colorHex(c),img:(v&&v.im)||ims[i]||ims[0]||''}}):[{c:'',hex:'',img:ims[0]||''}];
+  const pmin=Math.min(...vs.map(v=>v.price)),f=vs.find(v=>v.price===pmin)||vs[0];
+  return {id:n.id,nombre:n.title,categoria:n.productType||'',precio:pmin,precio_anterior:f.cmp>pmin?f.cmp:0,stock:vs.some(v=>v.ok)?99:0,tallas:oT?oT.values:[],vars,variants:vs,cur:f.cur};
+}
+async function load(){
+  let data=null,shop=false,msg='';
+  if(CFG.SIMULADOR)data=simLoad();
+  else if(!CFG.SB_KEY.startsWith('PEGA')){
+    const [po,ca,aj]=await Promise.all([sb('portadas?select=*&visible=eq.true&order=orden.asc'),sb('categorias?select=*&visible=eq.true&order=orden.asc'),sb('ajustes?select=*')]);
+    if(po&&po.length)setSlides(po);
+    if(ca&&ca.length)catList=ca.map(c=>esc(c.nombre));
+    if(aj){
+      const m=Object.fromEntries(aj.map(r=>[r.clave,r.valor]));
+      if(m.nombre){$('.brand').textContent=m.nombre;document.title=m.nombre+' · Tienda'}
+      if(m.whatsapp)CFG.WHATSAPP=m.whatsapp;
+      const d=dom(m.shopify_dominio),t=String(m.shopify_token||'').trim();
+      if(d&&t&&!/^shpat_/i.test(t))CFG.SHOP={d,t};
+    }
+    if(CFG.SHOP){
+      try{
+        const r=await shopify(GQL,{n:60});
+        data=r.products.nodes.filter(n=>n.variants.nodes.length).map(shopNorm);shop=true;
+        if(data[0]&&data[0].cur)CFG.MONEDA=data[0].cur;
+        if(!data.length)msg='La tienda todavía no tiene productos publicados. Mientras tanto ves ejemplos.';
+      }catch(e){msg='No pudimos cargar los productos. Revisa el dominio y el token en el panel (Ajustes).'}
+    }else msg='Falta conectar el catálogo en el panel (Ajustes). Mientras tanto ves productos de ejemplo.';
+  }
+  LIVE=!!(shop&&data&&data.length);
+  products=(LIVE?data:DEMO).map(norm).map(clean);
+  $('#note').innerHTML=LIVE?'':`<div class="note">${msg||'Modo simulador: productos y pagos de ejemplo. No se cobra nada.'}</div>`;
+  const fw=$('#fw');if(CFG.WHATSAPP&&fw){fw.hidden=false;fw.href='https://wa.me/'+String(CFG.WHATSAPP).replace(/\D/g,'')}
+  render();cartUI();
+}
+const card=(p,i)=>{
+  const v=p.vars[0],off=p.precio_anterior>p.precio?Math.round((1-p.precio/p.precio_anterior)*100):0,out=Number(p.stock)<=0,h=HUES[i%4];
+  return `<article class="sc" data-id="${p.id}"><div class="ph" style="background:linear-gradient(135deg,${h[0]},${h[1]})"><span class="ini">${p.nombre[0]}</span>${v.img?`<img src="${v.img}" alt="${p.nombre}" loading="lazy" onerror="this.remove()">`:''}${out?'<span class="tag">Agotado</span>':p.nuevo?'<span class="tag g">Nuevo</span>':off?`<span class="tag">-${off}%</span>`:''}<button class="qa" aria-label="Elegir talla y color">+</button></div>
+  ${p.vars.length>1?`<div class="sw">${p.vars.map((x,j)=>`<i data-j="${j}" title="${x.c}" style="background:${x.hex}" class="${j?'':'on'}"></i>`).join('')}</div>`:''}
+  <div class="nm">${p.nombre}</div><div class="pr"><b>${money(p.precio)}</b>${off?`<s>${money(p.precio_anterior)}</s>`:''}</div></article>`;
+};
+function render(){
+  const types=[...new Set(products.map(p=>p.categoria).filter(Boolean))],cats=['Todo',...(catList?[...catList.filter(c=>types.includes(c)),...types.filter(c=>!catList.includes(c))]:types)];
+  $('#chips').innerHTML=cats.map(c=>`<button class="chip ${c===cat?'on':''}" data-c="${c}">${c}</button>`).join('');
+  const list=products.filter(p=>(cat==='Todo'||p.categoria===cat)&&(p.nombre+' '+(p.categoria||'')).toLowerCase().includes(q));
+  $('#grid').innerHTML=list.length?list.map(card).join(''):'<p class="sub">No encontramos nada con esa búsqueda. Prueba con otra palabra.</p>';
+}
+$('#chips').onclick=e=>{const c=e.target.closest('.chip');if(c){cat=c.dataset.c;render()}};
+$('#q').oninput=e=>{q=e.target.value.trim().toLowerCase();render()};
+$('#grid').onclick=e=>{
+  const a=e.target.closest('.sc');if(!a)return;const p=prod(a.dataset.id);
+  const s=e.target.closest('.sw i');
+  if(s){const j=+s.dataset.j,im=a.querySelector('.ph img');if(im)im.src=p.vars[j].img;[...s.parentNode.children].forEach(x=>x.classList.toggle('on',x===s));a.dataset.j=j;return}
+  openDetail(a.dataset.id,+(a.dataset.j||0));
+};
+
+/* Carrito */
+function add(id,btn,t='',c='',im='',v='',pr=null){
+  const p=prod(id),k=[id,t,c].join('|'),it=cart.find(x=>x.k===k);
+  const have=cart.filter(x=>String(x.id)===String(id)).reduce((s,x)=>s+x.q,0);
+  if(have>=Number(p.stock))return false;
+  if(it)it.q++;else cart.push({id:p.id,q:1,t,c,k,im,v,pr});
+  fly(btn);save();cartUI();return true;
+}
+function fly(btn){
+  const a=btn.getBoundingClientRect(),b=$('#cartBtn').getBoundingClientRect(),d=document.createElement('div');d.className='fly';d.style.left=a.left+a.width/2+'px';d.style.top=a.top+'px';document.body.appendChild(d);
+  d.animate([{transform:'translate(0,0) scale(1)'},{transform:`translate(${b.left-a.left}px,${b.top-a.top}px) scale(.3)`,opacity:.4}],{duration:700,easing:'cubic-bezier(.5,-.3,.7,1)'}).onfinish=()=>{d.remove();$('#cartBtn').classList.remove('bump');void $('#cartBtn').offsetWidth;$('#cartBtn').classList.add('bump')};
+}
+function cartUI(){
+  cart=cart.filter(c=>prod(c.id)).map(c=>({...c,k:c.k||c.id+'||'}));
+  $('#cnt').textContent=cart.reduce((s,c)=>s+c.q,0);
+  $('#total').textContent=money(total());
+  $('#items').innerHTML=cart.length?cart.map(c=>{const p=prod(c.id);return `<div class="li"><div class="th" style="background-image:url('${c.im||img(p)}');background-color:var(--line)"></div><div><b>${p.nombre}</b><small style="display:block;color:var(--mut)">${[esc(c.t),c.c].filter(Boolean).join(' · ')}</small><div class="q"><button data-m="${c.k}" aria-label="Quitar uno">−</button>${c.q}<button data-p="${c.k}" aria-label="Agregar uno">+</button></div></div><b>${money(lp(c)*c.q)}</b></div>`}).join(''):'<p class="sub">Tu carrito está vacío. Agrega algo de la tienda.</p>';
+  $('#go').style.display=cart.length?'block':'none';
+}
+$('#items').onclick=e=>{
+  const m=e.target.dataset.m,p=e.target.dataset.p,k=m||p;if(!k)return;
+  const c=cart.find(x=>x.k===k);if(!c)return;
+  if(m){c.q--;if(c.q<=0)cart=cart.filter(x=>x!==c)}
+  else if(cart.filter(x=>String(x.id)===String(c.id)).reduce((s,x)=>s+x.q,0)<Number(prod(c.id).stock))c.q++;
+  save();cartUI();
+};
+const open=id=>$(id).classList.add('open'),shut=()=>$$('#drawer,#modal,#detail').forEach(x=>x.classList.remove('open'));
+$('#cartBtn').onclick=()=>open('#drawer');
+document.addEventListener('click',e=>{if(e.target.closest('[data-close]'))shut()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')shut()});
+
+/* Compra: condiciones → pago seguro en Shopify */
+function lines(){return cart.map(c=>{const p=prod(c.id),v=[c.t,c.c].filter(Boolean).join(', ');return `${c.q} × ${p.nombre}${v?' ['+v+']':''} (${money(lp(c)*c.q)})`})}
+function step(n){['p1','p2','p3'].forEach((id,i)=>{$('#'+id).className=i+1<n?'ok':i+1===n?'on':''})}
+$('#go').onclick=()=>{shut();open('#modal');stepTerms()};
+const HORAS=48; // horas para reportar un defecto o error (igual que en condiciones.html)
+function stepTerms(){
+  step(1);
+  $('#body').innerHTML=`<div class="sum">${lines().join('<br>')}<hr style="border:0;border-top:1px solid var(--line);margin:8px 0"><b>Total: ${money(total())}</b><br><small>El costo de envío y los impuestos se muestran en el pago, antes de pagar.</small></div>
+  <label>Referencia o nota para tu pedido (opcional)<textarea id="nt" rows="2" maxlength="300" placeholder="Ej: casa azul, junto a la farmacia"></textarea></label>
+  <div class="terms"><b>Condiciones de compra</b>
+    <ul><li><b>Pago:</b> lo haces en nuestro checkout seguro. Nosotros no vemos los datos de tu tarjeta.</li>
+    <li><b>Ventas finales:</b> no hay devoluciones ni reembolsos por cambio de opinión, talla o color.</li>
+    <li><b>Defecto o error nuestro:</b> avísanos en ${HORAS} horas con fotos y un video de cómo abriste el paquete, y lo resolvemos con cambio o crédito de tienda.</li>
+    <li><b>Envío:</b> escribes tu dirección en el pago. Revisa que esté completa: reenviar por una dirección errónea lo paga el cliente.</li></ul>
+    <a href="condiciones.html#terminos" target="_blank" rel="noopener noreferrer">Términos y condiciones</a> · <a href="condiciones.html#envios" target="_blank" rel="noopener noreferrer">Envíos</a> · <a href="condiciones.html#devoluciones" target="_blank" rel="noopener noreferrer">Cambios y reembolsos</a> · <a href="condiciones.html#privacidad" target="_blank" rel="noopener noreferrer">Privacidad</a></div>
+  <label class="agree"><input type="checkbox" id="okt"><span>He leído y acepto los términos y condiciones y las políticas de envíos, cambios y privacidad.</span></label>
+  <label class="agree"><input type="checkbox" id="okt2"><span>Revisé mi talla y mi dirección, y entiendo que las ventas son finales: no hay devoluciones por cambio de opinión, talla o color.</span></label>
+  <div class="err" id="err"></div><button class="big" id="pay" disabled>Continuar al pago seguro</button>`;
+  const chk=()=>{$('#pay').disabled=!($('#okt').checked&&$('#okt2').checked)};
+  $('#okt').onchange=chk;$('#okt2').onchange=chk;
+  $('#pay').onclick=pay;
+}
+async function pay(){
+  const b=$('#pay');b.disabled=true;b.textContent='Un momento…';$('#err').textContent='';
+  const nota=($('#nt').value||'').trim().slice(0,300);
+  if(!LIVE){stepSim();return}
+  try{
+    if(cart.some(c=>!c.v))throw new Error('Una prenda ya no está disponible. Quítala del carrito e inténtalo de nuevo.');
+    const ahora=new Date().toISOString();
+    const d=await shopify(CART_Q,{input:{lines:cart.map(c=>({merchandiseId:c.v,quantity:c.q})),note:('Aceptó términos y condiciones y ventas finales. '+nota).trim(),attributes:[{key:'condiciones_aceptadas',value:ahora},{key:'ventas_finales_aceptado',value:ahora}]}});
+    const r=d.cartCreate;
+    if(r.userErrors&&r.userErrors.length)throw new Error(r.userErrors[0].message);
+    const u=r.cart&&r.cart.checkoutUrl;
+    if(!/^https:\/\//.test(u||''))throw new Error('No se pudo abrir el pago.');
+    step(2);cart=[];save();cartUI();
+    location.href=u;
+  }catch(e){b.disabled=false;b.textContent='Continuar al pago seguro';$('#err').textContent=e.message==='shopify'?'No se pudo conectar con el pago. Intenta de nuevo.':e.message}
+}
+function stepSim(){
+  step(2);
+  $('#body').innerHTML=`<div class="note">Simulación del pago seguro. No se cobra nada.</div>
+  <div class="sum"><b>🔒 Pago seguro</b><br>${lines().join('<br>')}<hr style="border:0;border-top:1px solid var(--line);margin:8px 0"><b>Total: ${money(total())}</b><br><small>Aquí el cliente escribe su dirección, país, ciudad y código postal, ve el costo de envío y elige cómo pagar con los métodos de pago que actives.</small></div>
+  <button class="big" id="sp">Pagar ahora (simulado)</button>`;
+  $('#sp').onclick=()=>{$('#sp').disabled=true;$('#sp').textContent='Procesando…';setTimeout(stepDone,900)};
+}
+function stepDone(){
+  step(4);['p1','p2','p3'].forEach(id=>$('#'+id).className='ok');
+  $('#body').innerHTML='<div class="done"><div class="ck">✓</div><h2 style="font:800 26px var(--d)">Simulación completada</h2><p class="sub">Esto fue una prueba: no se cobró nada ni se creó ningún pedido. En la tienda real, aquí te llevamos a la página de pago seguro.</p></div>';
+  cart=[];save();cartUI();confetti();
+}
+function confetti(){
+  const cols=['#ff3d8b','#7c4dff','#ffb21e','#14c9a0','#3dc6ff'];
+  for(let i=0;i<48;i++){const c=document.createElement('i');c.className='cf';c.style.left=Math.random()*100+'vw';c.style.background=cols[i%5];document.body.appendChild(c);
+    c.animate([{transform:'translateY(0) rotate(0)'},{transform:`translate(${(Math.random()-.5)*160}px,${innerHeight+40}px) rotate(${Math.random()*900}deg)`}],{duration:1800+Math.random()*1400,delay:Math.random()*400,easing:'cubic-bezier(.3,.6,.5,1)'}).onfinish=()=>c.remove()}
+}
+/* Detalle de prenda: solo talla y color */
+function openDetail(id,j=0){
+  const p=prod(id),ts=p.tallas,hasC=p.vars.length>1||p.vars[0].c,h=HUES[products.indexOf(p)%4];
+  let t='',ci=j;
+  const off=p.precio_anterior>p.precio;
+  $('#dbody').innerHTML=`<button class="ib dx" data-close aria-label="Cerrar">✕</button>
+  <div class="gal" id="gal" style="background:linear-gradient(135deg,${h[0]},${h[1]})"><span class="ini">${p.nombre[0]}</span>${p.vars[ci].img?`<img id="gi" src="${p.vars[ci].img}" alt="${p.nombre}" onerror="this.remove()">`:''}</div>
+  <h3 class="dn">${p.nombre}</h3>
+  <div class="pr"><b>${money(p.precio)}</b>${off?`<s>${money(p.precio_anterior)}</s>`:''}</div>
+  ${ts.length?`<label>Talla</label><p class="ts">Revisa bien tu talla antes de comprar: no hacemos cambios por talla.</p><div class="opt" id="ot">${ts.map(x=>`<button class="chip">${x}</button>`).join('')}</div>`:''}
+  ${hasC?`<label>Color: <span id="cn">${p.vars[ci].c}</span></label><div class="opt" id="oc">${p.vars.map((x,k)=>`<button class="dot ${k===ci?'on':''}" data-k="${k}" aria-label="${x.c}" style="background:${x.hex}"></button>`).join('')}</div>`:''}
+  <div class="err" id="derr"></div><button class="big" id="dadd">Agregar al carrito</button>`;
+  const find=()=>p.variants&&p.variants.find(x=>(!ts.length||x.t===t)&&(!hasC||esc(x.c)===p.vars[ci].c));
+  const upd=()=>{const v=find();const b=$('#dbody .pr b');if(v&&b)b.textContent=money(v.price)};
+  const gal=$('#gal');
+  gal.onclick=()=>{if($('#gi'))gal.classList.toggle('zoom')};
+  gal.onpointermove=e=>{const g=$('#gi');if(g&&gal.classList.contains('zoom')){const r=gal.getBoundingClientRect();g.style.transformOrigin=((e.clientX-r.left)/r.width*100)+'% '+((e.clientY-r.top)/r.height*100)+'%'}};
+  const ot=$('#ot');if(ot)ot.onclick=e=>{const b=e.target.closest('.chip');if(!b)return;[...ot.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');t=b.textContent;$('#derr').textContent='';upd()};
+  const oc=$('#oc');if(oc)oc.onclick=e=>{const b=e.target.closest('.dot');if(!b)return;ci=+b.dataset.k;[...oc.children].forEach(x=>x.classList.toggle('on',x===b));$('#cn').textContent=p.vars[ci].c;const g=$('#gi');if(g)g.src=p.vars[ci].img;upd()};
+  $('#dadd').onclick=()=>{
+    if(ts.length&&!t){$('#derr').textContent='Elige una talla para continuar.';return}
+    const v=find();
+    if(p.variants&&!v){$('#derr').textContent='Esa combinación no está disponible.';return}
+    if(v&&!v.ok){$('#derr').textContent='Esa combinación está agotada.';return}
+    if(add(id,$('#dadd'),t,p.vars[ci].c,p.vars[ci].img,v?v.id:'',v?v.price:null))shut();else $('#derr').textContent='Ya tienes en el carrito todo el stock disponible.';
+  };
+  open('#detail');
+}
+load();
+</script>
+</body>
+</html>
